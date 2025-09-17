@@ -53,7 +53,7 @@
                 </p>
                 <div class="mt-8 flex justify-center space-x-4">
                     <button class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 glow">
-                        <span class="text-white" data-translate="button.start_usdg">USDQS 시작하기</span>
+                        <span class="text-white" data-translate="button.start_usdqs">USDQS 시작하기</span>
                     </button>
                     <button class="bg-transparent border border-gray-600 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105">
                         <span data-translate="button.learn_more">자세히 보기</span>
@@ -62,14 +62,14 @@
             </section>
 
             <section id="buy" class="mt-24">
-                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12"><span class="gradient-text">USDQS</span> <span data-translate="section.buy_usdg">구매하기</span></h2>
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12"><span class="gradient-text">USDQS</span> <span data-translate="section.buy_usdqs">구매하기</span></h2>
                 <div class="card p-8 rounded-2xl max-w-lg mx-auto">
                     <div class="flex flex-col space-y-4">
                         <label for="usd-amount" class="text-gray-400" data-translate="label.usd_amount">USD 금액 입력:</label>
                         <input type="number" id="usd-amount" placeholder="100" class="bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors" min="1" step="1">
                         
                         <div class="text-center text-gray-400">
-                            <span id="usdg-amount" class="text-2xl font-bold gradient-text">0</span> USDQS
+                            <span id="usdqs-amount" class="text-2xl font-bold gradient-text">0</span> USDQS
                         </div>
 
                         <button id="buy-button" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-8 rounded-full transition-colors">
@@ -277,9 +277,9 @@
                 'button.get_started': '시작하기',
                 'hero.subtitle': '글로벌 금융을 위한 새로운 기준',
                 'hero.description': '양자 금융 기반 혁신적인 USDQS 스테이블코인 플랫폼\n독자적인 금융 결제 시스템 확보 • 글로벌 디지털 기축통화 구축\n전 세계가 신뢰하는 차세대 디지털 생태계 • 완벽한 자산 담보 • 글로벌 금융 혁신의 시작',
-                'button.start_usdg': 'USDQS 시작하기',
+                'button.start_usdqs': 'USDQS 시작하기',
                 'button.learn_more': '자세히 보기',
-                'section.buy_usdg': '구매하기',
+                'section.buy_usdqs': '구매하기',
                 'label.usd_amount': 'USD 금액 입력:',
                 'button.buy': '구매하기',
                 'section.price_trend': '시세 동향',
@@ -350,9 +350,9 @@
                 'button.get_started': 'Get Started',
                 'hero.subtitle': 'A New Standard for Global Finance',
                 'hero.description': 'The innovative USDQS stablecoin platform based on quantum finance.\nSecuring an independent financial settlement system • Establishing a global digital reserve currency.\nNext-generation digital ecosystem trusted worldwide • Perfect asset backing • The beginning of global financial innovation.',
-                'button.start_usdg': 'Get Started with USDQS',
+                'button.start_usdqs': 'Get Started with USDQS',
                 'button.learn_more': 'Learn More',
-                'section.buy_usdg': 'Buy USDQS',
+                'section.buy_usdqs': 'Buy USDQS',
                 'label.usd_amount': 'Enter USD Amount:',
                 'button.buy': 'Buy',
                 'section.price_trend': 'Price Trend',
@@ -436,7 +436,7 @@
             // Handle USDQS in titles
             document.querySelector('h2 > .gradient-text').textContent = 'USDQS';
             document.querySelector('#hero h1 > .gradient-text').textContent = 'USDQS';
-            document.querySelector('#usdg-amount').nextSibling.textContent = ' USDQS';
+            document.querySelector('#usdqs-amount').nextSibling.textContent = ' USDQS';
         }
 
         window.onload = function() {
@@ -451,13 +451,13 @@
 
             // Rest of the existing code
             const usdInput = document.getElementById('usd-amount');
-            const usdgAmount = document.getElementById('usdg-amount');
+            const usdqsAmount = document.getElementById('usdqs-amount');
             const buyButton = document.getElementById('buy-button');
             const messageBox = document.getElementById('message-box');
 
             usdInput.addEventListener('input', () => {
                 const usd = usdInput.value;
-                usdgAmount.textContent = usd || '0';
+                usdqsAmount.textContent = usd || '0';
             });
 
             buyButton.addEventListener('click', () => {
