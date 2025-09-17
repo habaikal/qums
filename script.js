@@ -9,9 +9,9 @@ const translations = {
         'button.get_started': '시작하기',
         'hero.subtitle': '글로벌 금융을 위한 새로운 기준',
         'hero.description': '양자 금융 기반 혁신적인 USDQS 스테이블코인 플랫폼\n독자적인 금융 결제 시스템 확보 • 글로벌 디지털 기축통화 구축\n전 세계가 신뢰하는 차세대 디지털 생태계 • 완벽한 자산 담보 • 글로벌 금융 혁신의 시작',
-        'button.start_usdg': 'USDQS 시작하기',
+        'button.start_usdqs': 'USDQS 시작하기',
         'button.learn_more': '자세히 보기',
-        'section.buy_usdg': '구매하기',
+        'section.buy_usdqs': '구매하기',
         'label.usd_amount': 'USD 금액 입력:',
         'button.buy': '구매하기',
         'section.price_trend': '시세 동향',
@@ -84,9 +84,9 @@ const translations = {
         'button.get_started': 'Get Started',
         'hero.subtitle': 'A New Standard for Global Finance',
         'hero.description': 'The innovative USDQS stablecoin platform based on quantum finance.\nSecuring an independent financial settlement system • Establishing a global digital reserve currency.\nNext-generation digital ecosystem trusted worldwide • Perfect asset backing • The beginning of global financial innovation.',
-        'button.start_usdg': 'Get Started with USDQS',
+        'button.start_usdqs': 'Get Started with USDQS',
         'button.learn_more': 'Learn More',
-        'section.buy_usdg': 'Buy USDQS',
+        'section.buy_usdqs': 'Buy USDQS',
         'label.usd_amount': 'Enter USD Amount:',
         'button.buy': 'Buy',
         'section.price_trend': 'Price Trend',
@@ -170,7 +170,7 @@ function updateContent() {
 
     document.querySelector('h2 > .gradient-text').textContent = 'USDQS';
     document.querySelector('#hero h1 > .gradient-text').textContent = 'USDQS';
-    document.querySelector('#usdg-amount').nextSibling.textContent = ' USDQS';
+    document.querySelector('#usdqs-amount').nextSibling.textContent = ' USDQS';
 }
 
 window.onload = function() {
@@ -183,13 +183,13 @@ window.onload = function() {
     updateContent();
 
     const usdInput = document.getElementById('usd-amount');
-    const usdgAmount = document.getElementById('usdg-amount');
+    const usdqsAmount = document.getElementById('usdqs-amount');
     const buyButton = document.getElementById('buy-button');
     const messageBox = document.getElementById('message-box');
 
     usdInput.addEventListener('input', () => {
         const usd = usdInput.value;
-        usdgAmount.textContent = usd || '0';
+        usdqsAmount.textContent = usd || '0';
     });
 
     buyButton.addEventListener('click', () => {
