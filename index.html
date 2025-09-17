@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDQS Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-pattern">
+    <div class="min-h-screen flex flex-col items-center p-4">
+
+        <!-- Header -->
+        <header class="header-bg w-full max-w-7xl mx-auto rounded-full py-3 px-6 fixed top-4 z-50 transition-all duration-300">
+            <nav class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <img src="./images/logo.png" alt="USDQS Logo" class="w-8 h-8">
+                    <span class="text-2xl font-bold gradient-text">USDQS</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#dashboard" class="text-white text-sm font-medium hover:text-cyan-400 transition-colors" data-translate="menu.dashboard">대시보드</a>
+                    <a href="#buy" class="text-white text-sm font-medium hover:text-cyan-400 transition-colors" data-translate="menu.buy">구매하기</a>
+                    <a href="#chart" class="text-white text-sm font-medium hover:text-cyan-400 transition-colors" data-translate="menu.chart">차트</a>
+                    <a href="#features" class="text-white text-sm font-medium hover:text-cyan-400 transition-colors hidden sm:block" data-translate="menu.features">특징</a>
+                    <a href="#vision" class="text-white text-sm font-medium hover:text-cyan-400 transition-colors hidden md:block" data-translate="menu.vision">비전</a>
+                    <select id="language-switcher" class="bg-gray-700 text-white rounded-full py-1 px-2 text-sm">
+                        <option value="ko">한국어</option>
+                        <option value="en">English</option>
+                    </select>
+                    <button id="wallet-connect-btn" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full transition-colors">
+                        <span class="gradient-text" data-translate="button.connect_wallet">지갑 연결</span>
+                    </button>
+                    <button class="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-4 rounded-full transition-colors">
+                        <span data-translate="button.get_started">시작하기</span>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="w-full max-w-7xl mx-auto pt-24">
+
+            <!-- Hero Section -->
+            <section id="hero" class="text-center py-16">
+                <h1 class="text-4xl sm:text-6xl md:text-6xl font-bold leading-tight">
+                    <span class="gradient-text">USDQS</span>
+                    <br class="mb-8">
+                    <span class="text-2xl sm:text-4xl font-bold" data-translate="hero.subtitle">글로벌 금융을 위한 새로운 기준</span>
+                </h1>
+                <p class="mt-4 text-lg text-yellow-400 max-w-2xl mx-auto" data-translate="hero.description">
+                    <i>Where Stability Meets Innovation with Quantum Finance</i>
+                    <br><br>
+                    양자 금융 기반 혁신적인 <span class="gradient-text">USDQS</span> 스테이블코인 플랫폼<br>
+                    독자적인 금융 결제 시스템 확보 • 글로벌 디지털 기축통화 구축<br>
+                    전 세계가 신뢰하는 차세대 디지털 생태계 • 완벽한 자산 담보 • 글로벌 금융 혁신의 시작
+                </p>
+                <div class="mt-8 flex justify-center space-x-4">
+                    <button class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 glow">
+                        <span class="text-white" data-translate="button.start_USDQS">USDQS 시작하기</span>
+                    </button>
+                    <button class="bg-transparent border border-gray-600 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105">
+                        <span data-translate="button.learn_more">자세히 보기</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Buy Section -->
+            <section id="buy" class="mt-24">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12"><span class="gradient-text">USDQS</span> <span data-translate="section.buy_USDQS">구매하기</span></h2>
+                <div class="card p-8 rounded-2xl max-w-lg mx-auto">
+                    <div class="flex flex-col space-y-4">
+                        <label for="usd-amount" class="text-gray-400" data-translate="label.usd_amount">USD 금액 입력:</label>
+                        <input type="number" id="usd-amount" placeholder="100" class="bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors" min="1" step="1">
+                        
+                        <div class="text-center text-gray-400">
+                            <span id="USDQS-amount" class="text-2xl font-bold gradient-text">0</span> USDQS
+                        </div>
+
+                        <button id="buy-button" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-8 rounded-full transition-colors">
+                            <span data-translate="button.buy">구매하기</span>
+                        </button>
+                    </div>
+                    <div id="message-box" class="mt-6 p-4 rounded-md text-sm text-center hidden"></div>
+                </div>
+            </section>
+            
+            <!-- Chart Section -->
+            <section id="chart" class="mt-24">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12"><span class="gradient-text">USDQS</span> <span data-translate="section.price_trend">시세 동향</span></h2>
+                <div class="card p-8 rounded-2xl">
+                    <canvas id="priceChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Dashboard Mockup Section -->
+            <section id="dashboard" class="mt-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12" data-translate="section.dashboard">실시간 대시보드</h2>
+                <div class="grid sm:grid-cols-2 gap-8">
+                    <!-- Card 1: Total Supply -->
+                    <div class="card p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="text-lg text-gray-400 mb-2" data-translate="dashboard.total_supply">총 발행량</div>
+                            <div class="text-4xl font-bold gradient-text">$2.4B USDQS</div>
+                        </div>
+                        <div class="mt-4 text-sm text-gray-500" data-translate="dashboard.initial_scale">초기 발행 규모</div>
+                    </div>
+
+                    <!-- Card 2: 24h Trading Volume -->
+                    <div class="card p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="text-lg text-gray-400 mb-2" data-translate="dashboard.trading_volume">24시간 거래량</div>
+                            <div class="text-4xl font-bold text-green-400">$85M USDQS</div>
+                        </div>
+                        <div class="mt-4 text-sm text-gray-500" data-translate="dashboard.market_liquidity">활발한 시장 유동성</div>
+                    </div>
+
+                    <!-- Card 3: Asset Backing -->
+                    <div class="card p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="text-lg text-gray-400 mb-2" data-translate="dashboard.asset_backing">자산 담보율</div>
+                            <div class="text-4xl font-bold text-purple-400">100%</div>
+                        </div>
+                        <div class="mt-4 text-sm text-gray-500" data-translate="dashboard.transparent_custody">글로벌 감사기관의 투명한 보관</div>
+                    </div>
+
+                    <!-- Card 4: Integrated Platforms -->
+                    <div class="card p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="text-lg text-gray-400 mb-2" data-translate="dashboard.integrated_platforms">연동 플랫폼</div>
+                            <div class="text-4xl font-bold text-purple-400">50+</div>
+                        </div>
+                        <div class="mt-4 text-sm text-gray-500" data-translate="dashboard.partnership_ecosystem">다양한 파트너와 함께하는 생태계</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="mt-24">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12"><span class="gradient-text">USDQS</span><span data-translate="section.features">의 핵심 특징</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <!-- Feature Card 1: USD Based Backing -->
+                    <div class="card p-6 rounded-2xl text-center">
+                        <div class="icon-container mx-auto mb-4">
+                            <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 100-18 9 9 0 000 18z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold" data-translate="feature.usd_backing.title">USD 기반 담보</h3>
+                        <p class="text-gray-400 mt-2" data-translate="feature.usd_backing.description">HKMA 인증하에 거대한 USD 실물 자산 안전 담보</p>
+                    </div>
+                    <!-- Feature Card 2: Global Payment -->
+                    <div class="card p-6 rounded-2xl text-center">
+                        <div class="icon-container mx-auto mb-4">
+                            <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8a1 1 0 011 1v1h-1a1 1 0 110-2zM12 21a9 9 0 100-18 9 9 0 000 18z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold" data-translate="feature.global_payment.title">글로벌 결제</h3>
+                        <p class="text-gray-400 mt-2" data-translate="feature.global_payment.description">전 세계 송금, 투자, 결제 서비스 통합 플랫폼</p>
+                    </div>
+                    <!-- Feature Card 3: Regulatory Compliance -->
+                    <div class="card p-6 rounded-2xl text-center">
+                        <div class="icon-container mx-auto mb-4">
+                            <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.01 12.01 0 002.944 12c.045 4.095 2.193 7.846 5.618 10.056A11.955 11.955 0 0112 21.056a11.955 11.955 0 018.618-3.04A12.01 12.01 0 0021.056 12c-.045-4.095-2.193-7.846-5.618-10.056z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold" data-translate="feature.quantum_security.title">양자 내성 보안</h3>
+                        <p class="text-gray-400 mt-2" data-translate="feature.quantum_security.description">양자 내성 암호화 기술과 서명을 통해 해킹과 변조 방지</p>
+                    </div>
+                    <!-- New Feature Card 6: Operational Reliability -->
+                    <div class="card p-6 rounded-2xl text-center">
+                        <div class="icon-container mx-auto mb-4">
+                            <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8a1 1 0 011 1v1h-1a1 1 0 110-2zM12 21a9 9 0 100-18 9 9 0 000 18z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold" data-translate="feature.reliability.title">신뢰성 및 호환성</h3>
+                        <p class="text-gray-400 mt-2" data-translate="feature.reliability.description">양자 보안으로 블록체인 지갑 및 거래소와의 호환 안전성 강화</p>
+                    </div>
+                    <!-- Feature Card 7: Scalability -->
+                    <div class="card p-6 rounded-2xl text-center">
+                        <div class="icon-container mx-auto mb-4">
+                            <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0zm0 0a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0zM12 21a9 9 0 100-18 9 9 0 000 18z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold" data-translate="feature.regulatory.title">규제 준수</h3>
+                        <p class="text-gray-400 mt-2" data-translate="feature.regulatory.description">ODI 규제 완전 준수 및 국제 신뢰도 확보</p>
+                    </div>
+                    <!-- Feature Card 4: Stability -->
+                    <div class="card p-6 rounded-2xl text-center">
+                        <div class="icon-container mx-auto mb-4">
+                            <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 100-18 9 9 0 000 18z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold" data-translate="feature.stability.title">안정성</h3>
+                        <p class="text-gray-400 mt-2" data-translate="feature.stability.description">1:1 USD 페깅 유지 및 실시간 투명 감사</p>
+                    </div>
+                    <!-- New Feature Card 5: Quantum Security -->
+                    <div class="card p-6 rounded-2xl text-center">
+                        <div class="icon-container mx-auto mb-4">
+                            <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 100-18 9 9 0 000 18z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold" data-translate="feature.scalability.title">확장성</h3>
+                        <p class="text-gray-400 mt-2" data-translate="feature.scalability.description">아시아를 넘어 글로벌 디지털 달러 허브 구축</p>
+                    </div>
+                    <!-- Feature Card 8: MXLY Integration -->
+                    <div class="card p-6 rounded-2xl text-center">
+                        <div class="icon-container mx-auto mb-4">
+                            <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 100-18 9 9 0 000 18z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold" data-translate="feature.mxly_integration.title">MXLY 연동</h3>
+                        <p class="text-gray-400 mt-2" data-translate="feature.mxly_integration.description">MXLY 토큰과 연동하여 시너지 효과 극대화</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vision Section -->
+            <section id="vision" class="mt-24 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12"><span class="gradient-text">USDQS</span> <span data-translate="section.vision">의 비전</span></h2>
+                <div class="flex flex-col gap-8">
+                    <!-- Vision Phase 1 -->
+                    <div class="card p-8 rounded-2xl">
+                        <div class="text-4xl font-bold gradient-text mb-4" data-translate="vision.phase1.title">Phase 1</div>
+                        <h3 class="text-2xl font-semibold" data-translate="vision.phase1.subtitle">안정적 발행</h3>
+                        <p class="text-gray-400 mt-2" data-translate="vision.phase1.description">홍콩 기반 <span class="gradient-text">USDQS</span> 스테이블코인을 안정적으로 발행합니다.</p>
+                    </div>
+                    <!-- Vision Phase 2 -->
+                    <div class="card p-8 rounded-2xl">
+                        <div class="text-4xl font-bold gradient-text mb-4" data-translate="vision.phase2.title">Phase 2</div>
+                        <h3 class="text-2xl font-semibold" data-translate="vision.phase2.subtitle">플랫폼 연계</h3>
+                        <p class="text-gray-400 mt-2" data-translate="vision.phase2.description">다양한 금융 상품과 연동하여 <span class="gradient-text">USDQS</span> 생태계를 확장합니다.</p>
+                    </div>
+                    <!-- Vision Phase 3 -->
+                    <div class="card p-8 rounded-2xl">
+                        <div class="text-4xl font-bold gradient-text mb-4" data-translate="vision.phase3.title">Phase 3</div>
+                        <h3 class="text-2xl font-semibold" data-translate="vision.phase3.subtitle">글로벌 확장</h3>
+                        <p class="text-gray-400 mt-2" data-translate="vision.phase3.description">아시아를 넘어 글로벌 디지털 달러 허브가 됩니다.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="w-full py-8 mt-24 text-gray-500 text-sm">
+            <div class="flex flex-col md:flex-row justify-center md:justify-around items-center md:items-start space-y-8 md:space-y-0 text-white">
+                <div class="flex flex-col items-center md:items-start">
+                    <h3 class="text-lg font-semibold text-yellow-400 mb-2" data-translate="footer.platform.title">플랫폼</h3>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.platform.info">토큰 정보</a>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.platform.exchange">거래소</a>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.platform.whitepaper">백서</a>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.platform.vision">비전</a>
+                </div>
+                <div class="flex flex-col items-center md:items-start">
+                    <h3 class="text-lg font-semibold text-yellow-400 mb-2" data-translate="footer.support.title">지원</h3>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.support.faq">도움말</a>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.support.contact">문의하기</a>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.support.api_docs">API 문서</a>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.support.dev_guide">개발자 가이드</a>
+                </div>
+                <div class="flex flex-col items-center md:items-start">
+                    <h3 class="text-lg font-semibold text-yellow-400 mb-2" data-translate="footer.company.title">회사</h3>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.company.about">회사 소개</a>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.company.team">팀</a>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.company.investors">투자자</a>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.company.careers">채용</a>
+                </div>
+                <div class="flex flex-col items-center md:items-start">
+                    <h3 class="text-lg font-semibold text-yellow-400 mb-2" data-translate="footer.legal.title">법적 고지</h3>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.legal.terms">이용 약관</a>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.legal.privacy">개인정보처리방침</a>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.legal.risk">리스크 고지</a>
+                    <a href="#" class="hover:text-cyan-400" data-translate="footer.legal.audit">감사 보고서</a>
+                </div>
+            </div>
+            <div class="w-full text-center mt-8 pt-8 border-t border-gray-700">
+                &copy; 2025 <span class="gradient-text">USDQS</span>. All Rights Reserved.
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Chart.js and Custom Script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const translations = {
+            'ko': {
+                'menu.dashboard': '대시보드',
+                'menu.buy': '구매하기',
+                'menu.chart': '차트',
+                'menu.features': '특징',
+                'menu.vision': '비전',
+                'button.connect_wallet': '지갑 연결',
+                'button.get_started': '시작하기',
+                'hero.subtitle': '글로벌 금융을 위한 새로운 기준',
+                'hero.description': '양자 금융 기반 혁신적인 USDQS 스테이블코인 플랫폼\n독자적인 금융 결제 시스템 확보 • 글로벌 디지털 기축통화 구축\n전 세계가 신뢰하는 차세대 디지털 생태계 • 완벽한 자산 담보 • 글로벌 금융 혁신의 시작',
+                'button.start_USDQS': 'USDQS 시작하기',
+                'button.learn_more': '자세히 보기',
+                'section.buy_USDQS': '구매하기',
+                'label.usd_amount': 'USD 금액 입력:',
+                'button.buy': '구매하기',
+                'section.price_trend': '시세 동향',
+                'section.dashboard': '실시간 대시보드',
+                'dashboard.total_supply': '총 발행량',
+                'dashboard.initial_scale': '초기 발행 규모',
+                'dashboard.trading_volume': '24시간 거래량',
+                'dashboard.market_liquidity': '활발한 시장 유동성',
+                'dashboard.asset_backing': '자산 담보율',
+                'dashboard.transparent_custody': '글로벌 감사기관의 투명한 보관',
+                'dashboard.integrated_platforms': '연동 플랫폼',
+                'dashboard.partnership_ecosystem': '다양한 파트너와 함께하는 생태계',
+                'section.features': '의 핵심 특징',
+                'feature.usd_backing.title': 'USD 기반 담보',
+                'feature.usd_backing.description': 'HKMA 인증하에 거대한 USD 실물 자산 안전 담보',
+                'feature.global_payment.title': '글로벌 결제',
+                'feature.global_payment.description': '전 세계 송금, 투자, 결제 서비스 통합 플랫폼',
+                'feature.regulatory.title': '규제 준수',
+                'feature.regulatory.description': 'ODI 규제 완전 준수 및 국제 신뢰도 확보',
+                'feature.stability.title': '안정성',
+                'feature.stability.description': '1:1 USD 페깅 유지 및 실시간 투명 감사',
+                'feature.scalability.title': '확장성',
+                'feature.scalability.description': '아시아를 넘어 글로벌 디지털 달러 허브 구축',
+                'feature.mxly_integration.title': 'MXLY 연동',
+                'feature.mxly_integration.description': 'MXLY 토큰과 연동하여 시너지 효과 극대화',
+                'feature.quantum_security.title': '양자 내성 보안',
+                'feature.quantum_security.description': '양자 내성 암호화 기술과 서명을 통해 해킹과 변조 방지',
+                'feature.reliability.title': '신뢰성 및 호환성',
+                'feature.reliability.description': '양자 보안으로 블록체인 지갑 및 거래소와의 호환 안전성 강화',
+                'section.vision': '의 비전',
+                'vision.phase1.title': 'Phase 1',
+                'vision.phase1.subtitle': '안정적 발행',
+                'vision.phase1.description': '홍콩 기반 USDQS 스테이블코인을 안정적으로 발행합니다.',
+                'vision.phase2.title': 'Phase 2',
+                'vision.phase2.subtitle': '플랫폼 연계',
+                'vision.phase2.description': '다양한 금융 상품과 연동하여 USDQS 생태계를 확장합니다.',
+                'vision.phase3.title': 'Phase 3',
+                'vision.phase3.subtitle': '글로벌 확장',
+                'vision.phase3.description': '아시아를 넘어 글로벌 디지털 달러 허브가 됩니다.',
+                'footer.platform.title': '플랫폼',
+                'footer.platform.info': '토큰 정보',
+                'footer.platform.exchange': '거래소',
+                'footer.platform.whitepaper': '백서',
+                'footer.platform.vision': '비전',
+                'footer.support.title': '지원',
+                'footer.support.faq': '도움말',
+                'footer.support.contact': '문의하기',
+                'footer.support.api_docs': 'API 문서',
+                'footer.support.dev_guide': '개발자 가이드',
+                'footer.company.title': '회사',
+                'footer.company.about': '회사 소개',
+                'footer.company.team': '팀',
+                'footer.company.investors': '투자자',
+                'footer.company.careers': '채용',
+                'footer.legal.title': '법적 고지',
+                'footer.legal.terms': '이용 약관',
+                'footer.legal.privacy': '개인정보처리방침',
+                'footer.legal.risk': '리스크 고지',
+                'footer.legal.audit': '감사 보고서',
+            },
+            'en': {
+                'menu.dashboard': 'Dashboard',
+                'menu.buy': 'Buy',
+                'menu.chart': 'Chart',
+                'menu.features': 'Features',
+                'menu.vision': 'Vision',
+                'button.connect_wallet': 'Connect Wallet',
+                'button.get_started': 'Get Started',
+                'hero.subtitle': 'A New Standard for Global Finance',
+                'hero.description': 'The innovative USDQS stablecoin platform based on quantum finance.\nSecuring an independent financial settlement system • Establishing a global digital reserve currency.\nNext-generation digital ecosystem trusted worldwide • Perfect asset backing • The beginning of global financial innovation.',
+                'button.start_USDQS': 'Get Started with USDQS',
+                'button.learn_more': 'Learn More',
+                'section.buy_USDQS': 'Buy USDQS',
+                'label.usd_amount': 'Enter USD Amount:',
+                'button.buy': 'Buy',
+                'section.price_trend': 'Price Trend',
+                'section.dashboard': 'Live Dashboard',
+                'dashboard.total_supply': 'Total Supply',
+                'dashboard.initial_scale': 'Initial Issuance Scale',
+                'dashboard.trading_volume': '24H Trading Volume',
+                'dashboard.market_liquidity': 'Active Market Liquidity',
+                'dashboard.asset_backing': 'Asset Backing Ratio',
+                'dashboard.transparent_custody': 'Transparent Custody by Global Auditors',
+                'dashboard.integrated_platforms': 'Integrated Platforms',
+                'dashboard.partnership_ecosystem': 'Ecosystem with Diverse Partners',
+                'section.features': ' Core Features',
+                'feature.usd_backing.title': 'USD Based Backing',
+                'feature.usd_backing.description': 'Secure collateralization of vast USD physical assets under HKMA certification',
+                'feature.global_payment.title': 'Global Payment',
+                'feature.global_payment.description': 'Integrated platform for global remittance, investment, and payment services',
+                'feature.regulatory.title': 'Regulatory Compliance',
+                'feature.regulatory.description': 'Full compliance with ODI regulations and securing international credibility',
+                'feature.stability.title': 'Stability',
+                'feature.stability.description': '1:1 USD pegging and real-time transparent audits',
+                'feature.scalability.title': 'Scalability',
+                'feature.scalability.description': 'Expanding beyond Asia to become a global digital dollar hub',
+                'feature.mxly_integration.title': 'MXLY Integration',
+                'feature.mxly_integration.description': 'Maximizing synergy by linking with MXLY tokens',
+                'feature.quantum_security.title': 'Quantum-Resistant Security',
+                'feature.quantum_security.description': 'Prevents hacking and tampering using quantum-resistant cryptographic technology and signatures',
+                'feature.reliability.title': 'Reliability & Interoperability',
+                'feature.reliability.description': 'Enhanced security and compatibility with blockchain wallets and exchanges via quantum security',
+                'section.vision': ' Vision',
+                'vision.phase1.title': 'Phase 1',
+                'vision.phase1.subtitle': 'Stable Issuance',
+                'vision.phase1.description': 'Securely issuing a Hong Kong-based USDQS stablecoin.',
+                'vision.phase2.title': 'Phase 2',
+                'vision.phase2.subtitle': 'Platform Integration',
+                'vision.phase2.description': 'Expanding the USDQS ecosystem by linking with various financial products.',
+                'vision.phase3.title': 'Phase 3',
+                'vision.phase3.subtitle': 'Global Expansion',
+                'vision.phase3.description': 'Becoming a global digital dollar hub beyond Asia.',
+                'footer.platform.title': 'Platform',
+                'footer.platform.info': 'Token Info',
+                'footer.platform.exchange': 'Exchange',
+                'footer.platform.whitepaper': 'Whitepaper',
+                'footer.platform.vision': 'Vision',
+                'footer.support.title': 'Support',
+                'footer.support.faq': 'FAQ',
+                'footer.support.contact': 'Contact Us',
+                'footer.support.api_docs': 'API Docs',
+                'footer.support.dev_guide': 'Developer Guide',
+                'footer.company.title': 'Company',
+                'footer.company.about': 'About Us',
+                'footer.company.team': 'Team',
+                'footer.company.investors': 'Investors',
+                'footer.company.careers': 'Careers',
+                'footer.legal.title': 'Legal Notice',
+                'footer.legal.terms': 'Terms of Use',
+                'footer.legal.privacy': 'Privacy Policy',
+                'footer.legal.risk': 'Risk Notice',
+                'footer.legal.audit': 'Audit Report',
+            }
+        };
+
+        let currentLang = 'ko';
+
+        function updateContent() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[currentLang][key]) {
+                    el.textContent = translations[currentLang][key];
+                }
+            });
+
+            // Handle hero section with inner HTML for line breaks and span
+            const heroDescEl = document.querySelector('[data-translate="hero.description"]');
+            if (heroDescEl) {
+                const text = translations[currentLang]['hero.description'];
+                heroDescEl.innerHTML = `<i>Where Stability Meets Innovation with Quantum Finance</i><br><br>${text.replace(/\n/g, '<br>')}`;
+            }
+
+            // Handle USDQS in titles
+            document.querySelector('h2 > .gradient-text').textContent = 'USDQS';
+            document.querySelector('#hero h1 > .gradient-text').textContent = 'USDQS';
+            document.querySelector('#USDQS-amount').nextSibling.textContent = ' USDQS';
+        }
+
+        window.onload = function() {
+            const languageSwitcher = document.getElementById('language-switcher');
+            languageSwitcher.addEventListener('change', (event) => {
+                currentLang = event.target.value;
+                updateContent();
+            });
+
+            // Initial content update
+            updateContent();
+
+            // Rest of the existing code
+            const usdInput = document.getElementById('usd-amount');
+            const USDQSAmount = document.getElementById('USDQS-amount');
+            const buyButton = document.getElementById('buy-button');
+            const messageBox = document.getElementById('message-box');
+
+            usdInput.addEventListener('input', () => {
+                const usd = usdInput.value;
+                USDQSAmount.textContent = usd || '0';
+            });
+
+            buyButton.addEventListener('click', () => {
+                const usd = usdInput.value;
+                if (usd > 0) {
+                    showMessage(`✅ ${usd} USD로 ${usd} USDQS를 구매했습니다!`, 'success');
+                } else {
+                    showMessage('⚠️ 유효한 USD 금액을 입력해주세요.', 'error');
+                }
+            });
+
+            function showMessage(message, type) {
+                messageBox.textContent = message;
+                messageBox.classList.remove('hidden', 'bg-red-900', 'text-red-300', 'bg-green-900', 'text-green-300');
+                if (type === 'success') {
+                    messageBox.classList.add('bg-green-900', 'text-green-300');
+                } else {
+                    messageBox.classList.add('bg-red-900', 'text-red-300');
+                }
+                messageBox.classList.remove('hidden');
+                setTimeout(() => {
+                    messageBox.classList.add('hidden');
+                }, 5000);
+            }
+
+            // Chart.js implementation
+            const ctx = document.getElementById('priceChart').getContext('2d');
+            const data = {
+                labels: ['1D', '7D', '1M', '3M', '6M', '1Y', 'All'],
+                datasets: [{
+                    label: 'USDQS Price',
+                    data: [1.0001, 1.0002, 1.0000, 0.9999, 1.0003, 1.0001, 1.0000],
+                    borderColor: 'rgba(0, 255, 255, 0.7)',
+                    backgroundColor: 'rgba(0, 255, 255, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    fill: true
+                }]
+            };
+
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: 'white'
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: 'white'
+                            }
+                        }
+                    }
+                }
+            };
+            const priceChart = new Chart(ctx, config);
+            window.addEventListener('resize', () => {
+                priceChart.resize();
+            });
+        }
+    </script>
+</body>
+</html>

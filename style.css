@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0d1117;
+    color: #ffffff;
+    overflow-x: hidden;
+    animation: background-animate 15s ease infinite;
+    background-size: 400% 400%;
+}
+
+@keyframes background-animate {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.bg-pattern {
+    background-image: radial-gradient(at 50% 100%, #1f2736 0%, #0d1117 70%);
+}
+
+.header-bg {
+    background-image: linear-gradient(to right, rgba(31, 41, 55, 0.5), rgba(31, 41, 55, 0.1));
+    backdrop-filter: blur(10px);
+}
+
+.card {
+    background-color: #161b22;
+    border: 1px solid #2f363d;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.glow {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.icon-container {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
