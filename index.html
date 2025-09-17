@@ -10,24 +10,23 @@
 <body class="bg-pattern">
     <div class="min-h-screen flex flex-col items-center p-4">
 
-        <!-- Header -->
         <header class="header-bg w-full max-w-7xl mx-auto rounded-full py-3 px-6 fixed top-4 z-50 transition-all duration-300">
             <nav class="flex justify-between items-center">
                 <div class="flex items-center space-x-2">
                     <img src="./images/logo.png" alt="USDQS Logo" class="w-8 h-8">
-                    <span class="text-2xl font-bold gradient-text">USDQS</span>
+                    <span class="text-xl sm:text-2xl font-bold gradient-text">USDQS</span>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <a href="#dashboard" class="text-white text-sm font-medium hover:text-cyan-400 transition-colors" data-translate="menu.dashboard">대시보드</a>
-                    <a href="#buy" class="text-white text-sm font-medium hover:text-cyan-400 transition-colors" data-translate="menu.buy">구매하기</a>
-                    <a href="#chart" class="text-white text-sm font-medium hover:text-cyan-400 transition-colors" data-translate="menu.chart">차트</a>
-                    <a href="#features" class="text-white text-sm font-medium hover:text-cyan-400 transition-colors hidden sm:block" data-translate="menu.features">특징</a>
-                    <a href="#vision" class="text-white text-sm font-medium hover:text-cyan-400 transition-colors hidden md:block" data-translate="menu.vision">비전</a>
-                    <select id="language-switcher" class="bg-gray-700 text-white rounded-full py-1 px-2 text-sm">
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <a href="#dashboard" class="hidden sm:block text-white text-sm font-medium hover:text-cyan-400 transition-colors" data-translate="menu.dashboard">대시보드</a>
+                    <a href="#buy" class="hidden sm:block text-white text-sm font-medium hover:text-cyan-400 transition-colors" data-translate="menu.buy">구매하기</a>
+                    <a href="#chart" class="hidden sm:block text-white text-sm font-medium hover:text-cyan-400 transition-colors" data-translate="menu.chart">차트</a>
+                    <a href="#features" class="hidden sm:block text-white text-sm font-medium hover:text-cyan-400 transition-colors hidden sm:block" data-translate="menu.features">특징</a>
+                    <a href="#vision" class="hidden sm:block text-white text-sm font-medium hover:text-cyan-400 transition-colors hidden md:block" data-translate="menu.vision">비전</a>
+                    <select id="language-switcher" class="bg-gray-700 text-white rounded-full py-1 px-2 text-sm hidden sm:block">
                         <option value="ko">한국어</option>
                         <option value="en">English</option>
                     </select>
-                    <button id="wallet-connect-btn" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full transition-colors">
+                    <button id="wallet-connect-btn" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full transition-colors hidden sm:block">
                         <span class="gradient-text" data-translate="button.connect_wallet">지갑 연결</span>
                     </button>
                     <button class="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-4 rounded-full transition-colors">
@@ -37,10 +36,8 @@
             </nav>
         </header>
 
-        <!-- Main Content -->
         <main class="w-full max-w-7xl mx-auto pt-24">
 
-            <!-- Hero Section -->
             <section id="hero" class="text-center py-16">
                 <h1 class="text-4xl sm:text-6xl md:text-6xl font-bold leading-tight">
                     <span class="gradient-text">USDQS</span>
@@ -56,7 +53,7 @@
                 </p>
                 <div class="mt-8 flex justify-center space-x-4">
                     <button class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 glow">
-                        <span class="text-white" data-translate="button.start_USDQS">USDQS 시작하기</span>
+                        <span class="text-white" data-translate="button.start_usdg">USDQS 시작하기</span>
                     </button>
                     <button class="bg-transparent border border-gray-600 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105">
                         <span data-translate="button.learn_more">자세히 보기</span>
@@ -64,16 +61,15 @@
                 </div>
             </section>
 
-            <!-- Buy Section -->
             <section id="buy" class="mt-24">
-                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12"><span class="gradient-text">USDQS</span> <span data-translate="section.buy_USDQS">구매하기</span></h2>
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12"><span class="gradient-text">USDQS</span> <span data-translate="section.buy_usdg">구매하기</span></h2>
                 <div class="card p-8 rounded-2xl max-w-lg mx-auto">
                     <div class="flex flex-col space-y-4">
                         <label for="usd-amount" class="text-gray-400" data-translate="label.usd_amount">USD 금액 입력:</label>
                         <input type="number" id="usd-amount" placeholder="100" class="bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors" min="1" step="1">
                         
                         <div class="text-center text-gray-400">
-                            <span id="USDQS-amount" class="text-2xl font-bold gradient-text">0</span> USDQS
+                            <span id="usdg-amount" class="text-2xl font-bold gradient-text">0</span> USDQS
                         </div>
 
                         <button id="buy-button" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-8 rounded-full transition-colors">
@@ -84,7 +80,6 @@
                 </div>
             </section>
             
-            <!-- Chart Section -->
             <section id="chart" class="mt-24">
                 <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12"><span class="gradient-text">USDQS</span> <span data-translate="section.price_trend">시세 동향</span></h2>
                 <div class="card p-8 rounded-2xl">
@@ -92,11 +87,9 @@
                 </div>
             </section>
 
-            <!-- Dashboard Mockup Section -->
             <section id="dashboard" class="mt-16">
                 <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12" data-translate="section.dashboard">실시간 대시보드</h2>
                 <div class="grid sm:grid-cols-2 gap-8">
-                    <!-- Card 1: Total Supply -->
                     <div class="card p-6 rounded-2xl flex flex-col justify-between">
                         <div>
                             <div class="text-lg text-gray-400 mb-2" data-translate="dashboard.total_supply">총 발행량</div>
@@ -105,7 +98,6 @@
                         <div class="mt-4 text-sm text-gray-500" data-translate="dashboard.initial_scale">초기 발행 규모</div>
                     </div>
 
-                    <!-- Card 2: 24h Trading Volume -->
                     <div class="card p-6 rounded-2xl flex flex-col justify-between">
                         <div>
                             <div class="text-lg text-gray-400 mb-2" data-translate="dashboard.trading_volume">24시간 거래량</div>
@@ -114,7 +106,6 @@
                         <div class="mt-4 text-sm text-gray-500" data-translate="dashboard.market_liquidity">활발한 시장 유동성</div>
                     </div>
 
-                    <!-- Card 3: Asset Backing -->
                     <div class="card p-6 rounded-2xl flex flex-col justify-between">
                         <div>
                             <div class="text-lg text-gray-400 mb-2" data-translate="dashboard.asset_backing">자산 담보율</div>
@@ -123,7 +114,6 @@
                         <div class="mt-4 text-sm text-gray-500" data-translate="dashboard.transparent_custody">글로벌 감사기관의 투명한 보관</div>
                     </div>
 
-                    <!-- Card 4: Integrated Platforms -->
                     <div class="card p-6 rounded-2xl flex flex-col justify-between">
                         <div>
                             <div class="text-lg text-gray-400 mb-2" data-translate="dashboard.integrated_platforms">연동 플랫폼</div>
@@ -134,11 +124,9 @@
                 </div>
             </section>
 
-            <!-- Features Section -->
             <section id="features" class="mt-24">
                 <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12"><span class="gradient-text">USDQS</span><span data-translate="section.features">의 핵심 특징</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    <!-- Feature Card 1: USD Based Backing -->
                     <div class="card p-6 rounded-2xl text-center">
                         <div class="icon-container mx-auto mb-4">
                             <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -149,7 +137,6 @@
                         <h3 class="text-xl font-semibold" data-translate="feature.usd_backing.title">USD 기반 담보</h3>
                         <p class="text-gray-400 mt-2" data-translate="feature.usd_backing.description">HKMA 인증하에 거대한 USD 실물 자산 안전 담보</p>
                     </div>
-                    <!-- Feature Card 2: Global Payment -->
                     <div class="card p-6 rounded-2xl text-center">
                         <div class="icon-container mx-auto mb-4">
                             <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -159,7 +146,6 @@
                         <h3 class="text-xl font-semibold" data-translate="feature.global_payment.title">글로벌 결제</h3>
                         <p class="text-gray-400 mt-2" data-translate="feature.global_payment.description">전 세계 송금, 투자, 결제 서비스 통합 플랫폼</p>
                     </div>
-                    <!-- Feature Card 3: Regulatory Compliance -->
                     <div class="card p-6 rounded-2xl text-center">
                         <div class="icon-container mx-auto mb-4">
                             <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -169,7 +155,6 @@
                         <h3 class="text-xl font-semibold" data-translate="feature.quantum_security.title">양자 내성 보안</h3>
                         <p class="text-gray-400 mt-2" data-translate="feature.quantum_security.description">양자 내성 암호화 기술과 서명을 통해 해킹과 변조 방지</p>
                     </div>
-                    <!-- New Feature Card 6: Operational Reliability -->
                     <div class="card p-6 rounded-2xl text-center">
                         <div class="icon-container mx-auto mb-4">
                             <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -179,7 +164,6 @@
                         <h3 class="text-xl font-semibold" data-translate="feature.reliability.title">신뢰성 및 호환성</h3>
                         <p class="text-gray-400 mt-2" data-translate="feature.reliability.description">양자 보안으로 블록체인 지갑 및 거래소와의 호환 안전성 강화</p>
                     </div>
-                    <!-- Feature Card 7: Scalability -->
                     <div class="card p-6 rounded-2xl text-center">
                         <div class="icon-container mx-auto mb-4">
                             <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -189,7 +173,6 @@
                         <h3 class="text-xl font-semibold" data-translate="feature.regulatory.title">규제 준수</h3>
                         <p class="text-gray-400 mt-2" data-translate="feature.regulatory.description">ODI 규제 완전 준수 및 국제 신뢰도 확보</p>
                     </div>
-                    <!-- Feature Card 4: Stability -->
                     <div class="card p-6 rounded-2xl text-center">
                         <div class="icon-container mx-auto mb-4">
                             <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -199,7 +182,6 @@
                         <h3 class="text-xl font-semibold" data-translate="feature.stability.title">안정성</h3>
                         <p class="text-gray-400 mt-2" data-translate="feature.stability.description">1:1 USD 페깅 유지 및 실시간 투명 감사</p>
                     </div>
-                    <!-- New Feature Card 5: Quantum Security -->
                     <div class="card p-6 rounded-2xl text-center">
                         <div class="icon-container mx-auto mb-4">
                             <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -210,7 +192,6 @@
                         <h3 class="text-xl font-semibold" data-translate="feature.scalability.title">확장성</h3>
                         <p class="text-gray-400 mt-2" data-translate="feature.scalability.description">아시아를 넘어 글로벌 디지털 달러 허브 구축</p>
                     </div>
-                    <!-- Feature Card 8: MXLY Integration -->
                     <div class="card p-6 rounded-2xl text-center">
                         <div class="icon-container mx-auto mb-4">
                             <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -225,23 +206,19 @@
                 </div>
             </section>
 
-            <!-- Vision Section -->
             <section id="vision" class="mt-24 text-center">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-12"><span class="gradient-text">USDQS</span> <span data-translate="section.vision">의 비전</span></h2>
                 <div class="flex flex-col gap-8">
-                    <!-- Vision Phase 1 -->
                     <div class="card p-8 rounded-2xl">
                         <div class="text-4xl font-bold gradient-text mb-4" data-translate="vision.phase1.title">Phase 1</div>
                         <h3 class="text-2xl font-semibold" data-translate="vision.phase1.subtitle">안정적 발행</h3>
                         <p class="text-gray-400 mt-2" data-translate="vision.phase1.description">홍콩 기반 <span class="gradient-text">USDQS</span> 스테이블코인을 안정적으로 발행합니다.</p>
                     </div>
-                    <!-- Vision Phase 2 -->
                     <div class="card p-8 rounded-2xl">
                         <div class="text-4xl font-bold gradient-text mb-4" data-translate="vision.phase2.title">Phase 2</div>
                         <h3 class="text-2xl font-semibold" data-translate="vision.phase2.subtitle">플랫폼 연계</h3>
                         <p class="text-gray-400 mt-2" data-translate="vision.phase2.description">다양한 금융 상품과 연동하여 <span class="gradient-text">USDQS</span> 생태계를 확장합니다.</p>
                     </div>
-                    <!-- Vision Phase 3 -->
                     <div class="card p-8 rounded-2xl">
                         <div class="text-4xl font-bold gradient-text mb-4" data-translate="vision.phase3.title">Phase 3</div>
                         <h3 class="text-2xl font-semibold" data-translate="vision.phase3.subtitle">글로벌 확장</h3>
@@ -249,9 +226,7 @@
                     </div>
                 </div>
             </section>
-        </main>
         
-        <!-- Footer -->
         <footer class="w-full py-8 mt-24 text-gray-500 text-sm">
             <div class="flex flex-col md:flex-row justify-center md:justify-around items-center md:items-start space-y-8 md:space-y-0 text-white">
                 <div class="flex flex-col items-center md:items-start">
@@ -289,7 +264,6 @@
         </footer>
     </div>
     
-    <!-- Chart.js and Custom Script -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const translations = {
@@ -303,9 +277,9 @@
                 'button.get_started': '시작하기',
                 'hero.subtitle': '글로벌 금융을 위한 새로운 기준',
                 'hero.description': '양자 금융 기반 혁신적인 USDQS 스테이블코인 플랫폼\n독자적인 금융 결제 시스템 확보 • 글로벌 디지털 기축통화 구축\n전 세계가 신뢰하는 차세대 디지털 생태계 • 완벽한 자산 담보 • 글로벌 금융 혁신의 시작',
-                'button.start_USDQS': 'USDQS 시작하기',
+                'button.start_usdg': 'USDQS 시작하기',
                 'button.learn_more': '자세히 보기',
-                'section.buy_USDQS': '구매하기',
+                'section.buy_usdg': '구매하기',
                 'label.usd_amount': 'USD 금액 입력:',
                 'button.buy': '구매하기',
                 'section.price_trend': '시세 동향',
@@ -376,9 +350,9 @@
                 'button.get_started': 'Get Started',
                 'hero.subtitle': 'A New Standard for Global Finance',
                 'hero.description': 'The innovative USDQS stablecoin platform based on quantum finance.\nSecuring an independent financial settlement system • Establishing a global digital reserve currency.\nNext-generation digital ecosystem trusted worldwide • Perfect asset backing • The beginning of global financial innovation.',
-                'button.start_USDQS': 'Get Started with USDQS',
+                'button.start_usdg': 'Get Started with USDQS',
                 'button.learn_more': 'Learn More',
-                'section.buy_USDQS': 'Buy USDQS',
+                'section.buy_usdg': 'Buy USDQS',
                 'label.usd_amount': 'Enter USD Amount:',
                 'button.buy': 'Buy',
                 'section.price_trend': 'Price Trend',
@@ -462,7 +436,7 @@
             // Handle USDQS in titles
             document.querySelector('h2 > .gradient-text').textContent = 'USDQS';
             document.querySelector('#hero h1 > .gradient-text').textContent = 'USDQS';
-            document.querySelector('#USDQS-amount').nextSibling.textContent = ' USDQS';
+            document.querySelector('#usdg-amount').nextSibling.textContent = ' USDQS';
         }
 
         window.onload = function() {
@@ -477,13 +451,13 @@
 
             // Rest of the existing code
             const usdInput = document.getElementById('usd-amount');
-            const USDQSAmount = document.getElementById('USDQS-amount');
+            const usdgAmount = document.getElementById('usdg-amount');
             const buyButton = document.getElementById('buy-button');
             const messageBox = document.getElementById('message-box');
 
             usdInput.addEventListener('input', () => {
                 const usd = usdInput.value;
-                USDQSAmount.textContent = usd || '0';
+                usdgAmount.textContent = usd || '0';
             });
 
             buyButton.addEventListener('click', () => {
