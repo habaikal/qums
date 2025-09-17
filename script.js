@@ -8,8 +8,8 @@ const translations = {
         'button.connect_wallet': '지갑 연결',
         'button.get_started': '시작하기',
         'hero.subtitle': '글로벌 금융을 위한 새로운 기준',
-        'hero.description': '양자 금융 기반 혁신적인 USDG 스테이블코인 플랫폼\n독자적인 금융 결제 시스템 확보 • 글로벌 디지털 기축통화 구축\n전 세계가 신뢰하는 차세대 디지털 생태계 • 완벽한 자산 담보 • 글로벌 금융 혁신의 시작',
-        'button.start_usdg': 'USDG 시작하기',
+        'hero.description': '양자 금융 기반 혁신적인 USDQS 스테이블코인 플랫폼\n독자적인 금융 결제 시스템 확보 • 글로벌 디지털 기축통화 구축\n전 세계가 신뢰하는 차세대 디지털 생태계 • 완벽한 자산 담보 • 글로벌 금융 혁신의 시작',
+        'button.start_usdg': 'USDQS 시작하기',
         'button.learn_more': '자세히 보기',
         'section.buy_usdg': '구매하기',
         'label.usd_amount': 'USD 금액 입력:',
@@ -44,10 +44,10 @@ const translations = {
         'section.vision': '의 비전',
         'vision.phase1.title': 'Phase 1',
         'vision.phase1.subtitle': '안정적 발행',
-        'vision.phase1.description': '홍콩 기반 USDG 스테이블코인을 안정적으로 발행합니다.',
+        'vision.phase1.description': '홍콩 기반 USDQS 스테이블코인을 안정적으로 발행합니다.',
         'vision.phase2.title': 'Phase 2',
         'vision.phase2.subtitle': '플랫폼 연계',
-        'vision.phase2.description': '다양한 금융 상품과 연동하여 USDG 생태계를 확장합니다.',
+        'vision.phase2.description': '다양한 금융 상품과 연동하여 USDQS 생태계를 확장합니다.',
         'vision.phase3.title': 'Phase 3',
         'vision.phase3.subtitle': '글로벌 확장',
         'vision.phase3.description': '아시아를 넘어 글로벌 디지털 달러 허브가 됩니다.',
@@ -71,6 +71,8 @@ const translations = {
         'footer.legal.privacy': '개인정보처리방침',
         'footer.legal.risk': '리스크 고지',
         'footer.legal.audit': '감사 보고서',
+        'message.success': '✅ {usd} USD로 {usd} USDQS를 구매했습니다!',
+        'message.error': '⚠️ 유효한 USD 금액을 입력해주세요.',
     },
     'en': {
         'menu.dashboard': 'Dashboard',
@@ -81,10 +83,10 @@ const translations = {
         'button.connect_wallet': 'Connect Wallet',
         'button.get_started': 'Get Started',
         'hero.subtitle': 'A New Standard for Global Finance',
-        'hero.description': 'The innovative USDG stablecoin platform based on quantum finance.\nSecuring an independent financial settlement system • Establishing a global digital reserve currency.\nNext-generation digital ecosystem trusted worldwide • Perfect asset backing • The beginning of global financial innovation.',
-        'button.start_usdg': 'Get Started with USDG',
+        'hero.description': 'The innovative USDQS stablecoin platform based on quantum finance.\nSecuring an independent financial settlement system • Establishing a global digital reserve currency.\nNext-generation digital ecosystem trusted worldwide • Perfect asset backing • The beginning of global financial innovation.',
+        'button.start_usdg': 'Get Started with USDQS',
         'button.learn_more': 'Learn More',
-        'section.buy_usdg': 'Buy USDG',
+        'section.buy_usdg': 'Buy USDQS',
         'label.usd_amount': 'Enter USD Amount:',
         'button.buy': 'Buy',
         'section.price_trend': 'Price Trend',
@@ -117,18 +119,18 @@ const translations = {
         'section.vision': ' Vision',
         'vision.phase1.title': 'Phase 1',
         'vision.phase1.subtitle': 'Stable Issuance',
-        'vision.phase1.description': 'Securely issuing a Hong Kong-based USDG stablecoin.',
+        'vision.phase1.description': 'Securely issuing a Hong Kong-based USDQS stablecoin.',
         'vision.phase2.title': 'Phase 2',
         'vision.phase2.subtitle': 'Platform Integration',
-        'vision.phase2.description': 'Expanding the USDG ecosystem by linking with various financial products.',
+        'vision.phase2.description': 'Expanding the USDQS ecosystem by linking with various financial products.',
         'vision.phase3.title': 'Phase 3',
         'vision.phase3.subtitle': 'Global Expansion',
         'vision.phase3.description': 'Becoming a global digital dollar hub beyond Asia.',
         'footer.platform.title': 'Platform',
         'footer.platform.info': 'Token Info',
         'footer.platform.exchange': 'Exchange',
-        'footer.platform.staking': 'Staking',
-        'footer.platform.governance': 'DAO Governance',
+        'footer.platform.whitepaper': 'Whitepaper',
+        'footer.platform.vision': 'Vision',
         'footer.support.title': 'Support',
         'footer.support.faq': 'FAQ',
         'footer.support.contact': 'Contact Us',
@@ -144,6 +146,8 @@ const translations = {
         'footer.legal.privacy': 'Privacy Policy',
         'footer.legal.risk': 'Risk Notice',
         'footer.legal.audit': 'Audit Report',
+        'message.success': '✅ You have purchased {usd} USDQS with {usd} USD!',
+        'message.error': '⚠️ Please enter a valid USD amount.',
     }
 };
 
@@ -164,9 +168,9 @@ function updateContent() {
         heroDescEl.innerHTML = `<i>Where Stability Meets Innovation with Quantum Finance</i><br><br>${text.replace(/\n/g, '<br>')}`;
     }
 
-    document.querySelector('h2 > .gradient-text').textContent = 'USDG';
-    document.querySelector('#hero h1 > .gradient-text').textContent = 'USDG';
-    document.querySelector('#usdg-amount').nextSibling.textContent = ' USDG';
+    document.querySelector('h2 > .gradient-text').textContent = 'USDQS';
+    document.querySelector('#hero h1 > .gradient-text').textContent = 'USDQS';
+    document.querySelector('#usdg-amount').nextSibling.textContent = ' USDQS';
 }
 
 window.onload = function() {
@@ -191,9 +195,11 @@ window.onload = function() {
     buyButton.addEventListener('click', () => {
         const usd = usdInput.value;
         if (usd > 0) {
-            showMessage(`✅ ${usd} USD로 ${usd} USDG를 구매했습니다!`, 'success');
+            const successMessage = translations[currentLang]['message.success'].replace(/{usd}/g, usd);
+            showMessage(successMessage, 'success');
         } else {
-            showMessage('⚠️ 유효한 USD 금액을 입력해주세요.', 'error');
+            const errorMessage = translations[currentLang]['message.error'];
+            showMessage(errorMessage, 'error');
         }
     });
 
@@ -215,7 +221,7 @@ window.onload = function() {
     const data = {
         labels: ['1D', '7D', '1M', '3M', '6M', '1Y', 'All'],
         datasets: [{
-            label: 'USDG Price',
+            label: 'USDQS Price',
             data: [1.0001, 1.0002, 1.0000, 0.9999, 1.0003, 1.0001, 1.0000],
             borderColor: 'rgba(0, 255, 255, 0.7)',
             backgroundColor: 'rgba(0, 255, 255, 0.1)',
