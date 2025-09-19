@@ -4,137 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USDQS Platform</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0d1117;
-            color: #ffffff;
-            overflow-x: hidden;
-            animation: background-animate 15s ease infinite;
-            background-size: 400% 400%;
-        }
-
-        @keyframes background-animate {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .bg-pattern {
-            background-image: radial-gradient(at 50% 100%, #1f2736 0%, #0d1117 70%);
-        }
-
-        .header-bg {
-            background-image: linear-gradient(to right, rgba(31, 41, 55, 0.5), rgba(31, 41, 55, 0.1));
-            backdrop-filter: blur(10px);
-        }
-
-        .card {
-            background-color: #161b22;
-            border: 1px solid #2f363d;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .glow {
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-        }
-
-        .gradient-text {
-            background: linear-gradient(90deg, #00c6ff, #0072ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .icon-container {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgba(0, 255, 255, 0.1);
-            border: 1px solid rgba(0, 255, 255, 0.3);
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
-        }
-
-        .auth-modal {
-            display: none;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background-color: #161b22;
-            padding: 2rem;
-            border-radius: 1rem;
-            width: 90%;
-            max-width: 400px;
-            border: 1px solid #2f363d;
-            position: relative;
-        }
-
-        .modal-close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-        }
-    </style>
 </head>
 <body class="bg-pattern">
     <div class="min-h-screen flex flex-col items-center p-4">
 
-        <!-- Login/Register Modal -->
-        <div id="auth-modal" class="auth-modal modal-overlay">
-            <div class="modal-content">
-                <button id="modal-close-btn" class="modal-close-btn text-gray-400 hover:text-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-                
-                <h2 id="modal-title" class="text-2xl font-bold text-center mb-6 gradient-text"></h2>
-                
-                <form id="auth-form" class="space-y-4">
-                    <div>
-                        <label for="auth-email" class="block text-sm font-medium text-gray-400">이메일 주소</label>
-                        <input type="email" id="auth-email" required class="mt-1 block w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                    </div>
-                    <div>
-                        <label for="auth-password" class="block text-sm font-medium text-gray-400">비밀번호</label>
-                        <input type="password" id="auth-password" required class="mt-1 block w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                    </div>
-                    <button type="submit" id="auth-submit-btn" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-8 rounded-full transition-colors">
-                        <span id="auth-btn-text"></span>
-                    </button>
-                    <div id="auth-message" class="mt-4 text-center text-sm font-semibold hidden"></div>
-                </form>
-
-                <div class="mt-6 text-center text-sm">
-                    <button id="toggle-auth-mode" class="text-cyan-400 hover:underline transition-colors"></button>
-                </div>
-            </div>
-        </div>
-        
         <header class="header-bg w-full max-w-7xl mx-auto rounded-full py-3 px-6 fixed top-4 z-50 transition-all duration-300">
             <nav class="flex justify-between items-center">
                 <div class="flex items-center space-x-2">
@@ -154,15 +29,15 @@
                     <button id="wallet-connect-btn" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full transition-colors hidden sm:block">
                         <span class="gradient-text" data-translate="button.connect_wallet">지갑 연결</span>
                     </button>
-                    <button id="auth-button" class="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-4 rounded-full transition-colors">
-                        <span id="auth-button-text">로그인</span>
+                    <button class="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-4 rounded-full transition-colors">
+                        <span data-translate="button.get_started">시작하기</span>
                     </button>
                 </div>
             </nav>
         </header>
 
         <main class="w-full max-w-7xl mx-auto pt-24">
-            <!-- 기존 섹션들 -->
+
             <section id="hero" class="text-center py-16">
                 <h1 class="text-4xl sm:text-6xl md:text-6xl font-bold leading-tight">
                     <span class="gradient-text">USDQS</span>
@@ -390,13 +265,7 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        setLogLevel('debug');
-        
+    <script>
         const translations = {
             'ko': {
                 'menu.dashboard': '대시보드',
@@ -407,7 +276,7 @@
                 'button.connect_wallet': '지갑 연결',
                 'button.get_started': '시작하기',
                 'hero.subtitle': '글로벌 금융을 위한 새로운 기준',
-                'hero.description': '양자 금융 기반 혁신적인 USDQS 스테이블코인 플랫폼\\n독자적인 금융 결제 시스템 확보 • 글로벌 디지털 기축통화 구축\\n전 세계가 신뢰하는 차세대 디지털 생태계 • 완벽한 자산 담보 • 글로벌 금융 혁신의 시작',
+                'hero.description': '양자 금융 기반 혁신적인 USDQS 스테이블코인 플랫폼\n독자적인 금융 결제 시스템 확보 • 글로벌 디지털 기축통화 구축\n전 세계가 신뢰하는 차세대 디지털 생태계 • 완벽한 자산 담보 • 글로벌 금융 혁신의 시작',
                 'button.start_usdqs': 'USDQS 시작하기',
                 'button.learn_more': '자세히 보기',
                 'section.buy_usdqs': '구매하기',
@@ -472,21 +341,6 @@
                 'footer.legal.audit': '감사 보고서',
                 'message.success': '✅ {usd} USD로 {usd} USDQS를 구매했습니다!',
                 'message.error': '⚠️ 유효한 USD 금액을 입력해주세요.',
-                'auth.login_title': '로그인',
-                'auth.register_title': '회원가입',
-                'auth.login_btn': '로그인',
-                'auth.register_btn': '가입하기',
-                'auth.switch_to_register': '아직 계정이 없으신가요? 가입하기',
-                'auth.switch_to_login': '이미 계정이 있으신가요? 로그인',
-                'auth.error.invalid_email': '유효하지 않은 이메일 주소입니다.',
-                'auth.error.wrong_password': '잘못된 비밀번호입니다.',
-                'auth.error.user_not_found': '해당 이메일로 가입된 사용자가 없습니다.',
-                'auth.error.email_in_use': '이미 사용 중인 이메일입니다.',
-                'auth.error.weak_password': '비밀번호는 최소 6자 이상이어야 합니다.',
-                'auth.error.generic': '로그인/가입 중 오류가 발생했습니다. 다시 시도해주세요.',
-                'auth.success.register': '회원가입이 완료되었습니다! 로그인해 주세요.',
-                'auth.welcome': '환영합니다, {email}님!',
-                'auth.logout': '로그아웃',
             },
             'en': {
                 'menu.dashboard': 'Dashboard',
@@ -497,7 +351,7 @@
                 'button.connect_wallet': 'Connect Wallet',
                 'button.get_started': 'Get Started',
                 'hero.subtitle': 'A New Standard for Global Finance',
-                'hero.description': 'The innovative USDQS stablecoin platform based on quantum finance.\\nSecuring an independent financial settlement system • Establishing a global digital reserve currency.\\nNext-generation digital ecosystem trusted worldwide • Perfect asset backing • The beginning of global financial innovation.',
+                'hero.description': 'The innovative USDQS stablecoin platform based on quantum finance.\nSecuring an independent financial settlement system • Establishing a global digital reserve currency.\nNext-generation digital ecosystem trusted worldwide • Perfect asset backing • The beginning of global financial innovation.',
                 'button.start_usdqs': 'Get Started with USDQS',
                 'button.learn_more': 'Learn More',
                 'section.buy_usdqs': 'Buy',
@@ -562,55 +416,10 @@
                 'footer.legal.audit': 'Audit Report',
                 'message.success': '✅ You have purchased {usd} USDQS with {usd} USD!',
                 'message.error': '⚠️ Please enter a valid USD amount.',
-                'auth.login_title': 'Login',
-                'auth.register_title': 'Register',
-                'auth.login_btn': 'Login',
-                'auth.register_btn': 'Register',
-                'auth.switch_to_register': 'Don\'t have an account? Register',
-                'auth.switch_to_login': 'Already have an account? Login',
-                'auth.error.invalid_email': 'Invalid email address.',
-                'auth.error.wrong_password': 'Wrong password.',
-                'auth.error.user_not_found': 'No user found with this email.',
-                'auth.error.email_in_use': 'Email is already in use.',
-                'auth.error.weak_password': 'Password should be at least 6 characters.',
-                'auth.error.generic': 'An error occurred during authentication. Please try again.',
-                'auth.success.register': 'Registration complete! Please log in.',
-                'auth.welcome': 'Welcome, {email}!',
-                'auth.logout': 'Logout',
             }
         };
 
         let currentLang = 'ko';
-        let isLoginMode = true;
-
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-
-        let app, auth, db;
-        let userId = null;
-
-        try {
-            if (Object.keys(firebaseConfig).length > 0) {
-                app = initializeApp(firebaseConfig);
-                auth = getAuth(app);
-                db = getFirestore(app);
-            }
-        } catch (e) {
-            console.error("Firebase initialization failed:", e);
-        }
-
-        async function initAuth() {
-            if (!auth) return;
-            try {
-                if (typeof __initial_auth_token !== 'undefined') {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-            } catch (e) {
-                console.error("Firebase auth failed:", e);
-            }
-        }
 
         function updateContent() {
             const elements = document.querySelectorAll('[data-translate]');
@@ -621,111 +430,35 @@
                 }
             });
 
+            // Handle hero section with inner HTML for line breaks and span
             const heroDescEl = document.querySelector('[data-translate="hero.description"]');
             if (heroDescEl) {
                 const text = translations[currentLang]['hero.description'];
-                heroDescEl.innerHTML = `<i>Where Stability Meets Innovation with Quantum Finance</i><br><br>${text.replace(/\\n/g, '<br>')}`;
+                heroDescEl.innerHTML = `<i>Where Stability Meets Innovation with Quantum Finance</i><br><br>${text.replace(/\n/g, '<br>')}`;
             }
 
+            // Handle USDQS in titles
             document.querySelector('h2 > .gradient-text').textContent = 'USDQS';
             document.querySelector('#hero h1 > .gradient-text').textContent = 'USDQS';
             document.querySelector('#usdqs-amount').nextSibling.textContent = ' USDQS';
-            updateAuthModalText();
-        }
-
-        function updateAuthModalText() {
-            const modalTitle = document.getElementById('modal-title');
-            const authBtnText = document.getElementById('auth-btn-text');
-            const toggleAuthModeBtn = document.getElementById('toggle-auth-mode');
-            
-            modalTitle.textContent = translations[currentLang][isLoginMode ? 'auth.login_title' : 'auth.register_title'];
-            authBtnText.textContent = translations[currentLang][isLoginMode ? 'auth.login_btn' : 'auth.register_btn'];
-            toggleAuthModeBtn.textContent = translations[currentLang][isLoginMode ? 'auth.switch_to_register' : 'auth.switch_to_login'];
-        }
-
-        function showAuthModal(mode) {
-            isLoginMode = mode === 'login';
-            updateAuthModalText();
-            document.getElementById('auth-modal').style.display = 'flex';
-            document.getElementById('auth-message').classList.add('hidden');
-        }
-
-        function closeAuthModal() {
-            document.getElementById('auth-modal').style.display = 'none';
-        }
-
-        function showMessage(message, type) {
-            const messageBox = document.getElementById('message-box');
-            messageBox.textContent = message;
-            messageBox.classList.remove('hidden', 'bg-red-900', 'text-red-300', 'bg-green-900', 'text-green-300');
-            if (type === 'success') {
-                messageBox.classList.add('bg-green-900', 'text-green-300');
-            } else {
-                messageBox.classList.add('bg-red-900', 'text-red-300');
-            }
-            messageBox.classList.remove('hidden');
-            setTimeout(() => {
-                messageBox.classList.add('hidden');
-            }, 5000);
-        }
-
-        function showAuthMessage(message, type) {
-            const messageEl = document.getElementById('auth-message');
-            messageEl.textContent = message;
-            messageEl.classList.remove('hidden', 'bg-red-900', 'text-red-300', 'bg-green-900', 'text-green-300');
-            if (type === 'success') {
-                messageEl.classList.add('bg-green-900', 'text-green-300');
-            } else {
-                messageEl.classList.add('bg-red-900', 'text-red-300');
-            }
-            messageEl.classList.remove('hidden');
         }
 
         window.onload = function() {
-            initAuth();
-
-            onAuthStateChanged(auth, async (user) => {
-                const authButton = document.getElementById('auth-button');
-                const authButtonText = document.getElementById('auth-button-text');
-                if (user) {
-                    userId = user.uid;
-                    const email = user.email;
-                    if (email) {
-                        authButtonText.textContent = translations[currentLang]['auth.logout'];
-                        authButton.onclick = async () => {
-                            await auth.signOut();
-                            authButtonText.textContent = translations[currentLang]['auth.login_title'];
-                        };
-                        
-                        // User info save to Firestore
-                        const userDocRef = doc(db, `artifacts/${appId}/users/${userId}/profile/info`);
-                        const userDocSnap = await getDoc(userDocRef);
-                        if (!userDocSnap.exists()) {
-                            await setDoc(userDocRef, {
-                                email: email,
-                                createdAt: new Date(),
-                            });
-                        }
-                    }
-                } else {
-                    userId = null;
-                    authButtonText.textContent = translations[currentLang]['auth.login_title'];
-                    authButton.onclick = () => showAuthModal('login');
-                }
-            });
-
             const languageSwitcher = document.getElementById('language-switcher');
             languageSwitcher.addEventListener('change', (event) => {
                 currentLang = event.target.value;
                 updateContent();
             });
 
+            // Initial content update
             updateContent();
 
+            // Rest of the existing code
             const usdInput = document.getElementById('usd-amount');
             const usdqsAmount = document.getElementById('usdqs-amount');
             const buyButton = document.getElementById('buy-button');
-            
+            const messageBox = document.getElementById('message-box');
+
             usdInput.addEventListener('input', () => {
                 const usd = usdInput.value;
                 usdqsAmount.textContent = usd || '0';
@@ -742,67 +475,21 @@
                 }
             });
 
-            const authForm = document.getElementById('auth-form');
-            authForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const email = document.getElementById('auth-email').value;
-                const password = document.getElementById('auth-password').value;
-
-                try {
-                    if (isLoginMode) {
-                        await signInWithEmailAndPassword(auth, email, password);
-                        closeAuthModal();
-                    } else {
-                        await createUserWithEmailAndPassword(auth, email, password);
-                        showAuthMessage(translations[currentLang]['auth.success.register'], 'success');
-                        isLoginMode = true;
-                        updateAuthModalText();
-                    }
-                } catch (error) {
-                    let errorMessage = translations[currentLang]['auth.error.generic'];
-                    switch (error.code) {
-                        case 'auth/invalid-email':
-                            errorMessage = translations[currentLang]['auth.error.invalid_email'];
-                            break;
-                        case 'auth/user-not-found':
-                            errorMessage = translations[currentLang]['auth.error.user_not_found'];
-                            break;
-                        case 'auth/wrong-password':
-                            errorMessage = translations[currentLang]['auth.error.wrong_password'];
-                            break;
-                        case 'auth/email-already-in-use':
-                            errorMessage = translations[currentLang]['auth.error.email_in_use'];
-                            break;
-                        case 'auth/weak-password':
-                            errorMessage = translations[currentLang]['auth.error.weak_password'];
-                            break;
-                    }
-                    showAuthMessage(errorMessage, 'error');
+            function showMessage(message, type) {
+                messageBox.textContent = message;
+                messageBox.classList.remove('hidden', 'bg-red-900', 'text-red-300', 'bg-green-900', 'text-green-300');
+                if (type === 'success') {
+                    messageBox.classList.add('bg-green-900', 'text-green-300');
+                } else {
+                    messageBox.classList.add('bg-red-900', 'text-red-300');
                 }
-            });
-
-            document.getElementById('toggle-auth-mode').addEventListener('click', () => {
-                isLoginMode = !isLoginMode;
-                updateAuthModalText();
-                showAuthMessage('', 'none');
-            });
-
-            const startUSDQSBtn = document.querySelector('[data-translate="button.start_usdqs"]');
-            const getStartedBtn = document.querySelector('[data-translate="button.get_started"]');
-
-            if (startUSDQSBtn) {
-                startUSDQSBtn.addEventListener('click', () => showAuthModal('login'));
-            }
-            if (getStartedBtn) {
-                getStartedBtn.addEventListener('click', () => showAuthModal('login'));
-            }
-            
-            // Fix for ReferenceError: closeAuthModal
-            const modalCloseBtn = document.getElementById('modal-close-btn');
-            if (modalCloseBtn) {
-                modalCloseBtn.addEventListener('click', closeAuthModal);
+                messageBox.classList.remove('hidden');
+                setTimeout(() => {
+                    messageBox.classList.add('hidden');
+                }, 5000);
             }
 
+            // Chart.js implementation
             const ctx = document.getElementById('priceChart').getContext('2d');
             const data = {
                 labels: ['1D', '7D', '1M', '3M', '6M', '1Y', 'All'],
